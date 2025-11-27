@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const data = mockSurveyData;
 
   // Custom label render for Pie charts to show value > 0
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, value }: any) => {
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, value }: any) => {
     if (value === 0) return null;
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -131,7 +131,7 @@ const App: React.FC = () => {
                   label={renderCustomizedLabel}
                   labelLine={false}
                 >
-                  {data.hoursPerWeek.map((entry, index) => (
+                  {data.hoursPerWeek.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                   ))}
                 </Pie>
@@ -218,7 +218,7 @@ const App: React.FC = () => {
                 <YAxis stroke="#94a3b8" tick={{fontSize: 12}} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} cursor={{fill: '#334155', opacity: 0.2}} />
                 <Bar dataKey="value" fill={COLORS.purple} radius={[4, 4, 0, 0]}>
-                   {data.benchPressRecord.map((entry, index) => (
+                   {data.benchPressRecord.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={index > 4 ? COLORS.accent : COLORS.purple} />
                   ))}
                   <LabelList dataKey="value" position="top" fill="#94a3b8" fontSize={12} formatter={(val: number) => val > 0 ? val : ''} />
@@ -314,7 +314,7 @@ const App: React.FC = () => {
                   label={renderCustomizedLabel}
                   labelLine={false}
                 >
-                  {data.primaryReason.map((entry, index) => (
+                  {data.primaryReason.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                   ))}
                 </Pie>
